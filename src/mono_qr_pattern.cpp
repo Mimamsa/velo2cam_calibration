@@ -44,6 +44,7 @@
 #include <opencv2/aruco.hpp>
 #include <opencv2/opencv.hpp>
 
+
 using namespace std;
 using namespace cv;
 
@@ -74,6 +75,10 @@ Point2f projectPointDist(cv::Point3f pt_cv, const Mat intrinsics,
       1);  // TODO: Do it batched? (cv::circle is not batched anyway)
   projectPoints(input, Mat::zeros(3, 1, CV_64FC1), Mat::zeros(3, 1, CV_64FC1),
                 intrinsics, distCoeffs, projectedPoints);
+  // TODO: Implementation for fisheye
+  //fisheye::projectPoints(input, projectedPoints, Mat::zeros(3, 1, CV_64FC1),
+  //              Mat::zeros(3, 1, CV_64FC1), intrinsics, distCoeffs);
+
   return projectedPoints[0];
 }
 
@@ -538,9 +543,9 @@ int main(int argc, char **argv) {
 
   nh.param("delta_width_circles", delta_width_circles_, 0.5);
   nh.param("delta_height_circles", delta_height_circles_, 0.4);
-  nh_.param("marker_size", marker_size_, 0.20);
-  nh_.param("delta_width_qr_center_", delta_width_qr_center_, 0.55);
-  nh_.param("delta_height_qr_center_", delta_height_qr_center_, 0.35);
+  nh_.param("marker_size", marker_size_, 0.16);
+  nh_.param("delta_width_qr_center_", delta_width_qr_center_, 0.47);
+  nh_.param("delta_height_qr_center_", delta_height_qr_center_, 0.32);
   nh_.param("min_detected_markers", min_detected_markers_, 3);
   nh_.param("cluster_tolerance", cluster_tolerance_, 0.05);
   nh_.param("min_cluster_factor", min_cluster_factor_, 2.0 / 3.0);

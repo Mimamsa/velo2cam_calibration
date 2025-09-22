@@ -76,6 +76,14 @@ add_executable(velo2cam_calibration src/velo2cam_calibration.cpp)
 add_executable(v2c_plane_segmentation src/plane.cpp)
 add_executable(v2c_disp_masker src/disp_masker.cpp)
 
+## If '-DCMAKE_BUILD_TYPE=Debug' passed to catkin_make, then define DEBUG symbol
+#target_compile_definitions(lidar_pattern
+#    PRIVATE
+#        $<$<CONFIG:Debug>:DEBUG=1>
+#)
+
+
+
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 add_dependencies(lidar_pattern
